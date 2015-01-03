@@ -1,0 +1,140 @@
+<div class="msg" ng-show="msg">{{msg}}</div>
+			
+			<div class="row header">
+				
+				<div class="cell title">
+					Changelist / Build
+				</div>
+				<div class="cell owner">
+					Owner
+				</div>
+				<div class="cell starttime">
+					Time Started
+				</div>
+				<div class="cell state">
+					State
+				</div>
+				<div class="cell prog">
+					Metrics
+				</div>
+				<div class="cell prog">
+					Build
+				</div>
+				<div class="cell prog">
+					Unit Test
+				</div>
+				<div class="cell prog">
+					Functional Test
+				</div>
+			</div>
+			
+			
+			<div ng-repeat="row in data" class="row notheader {{row.state}} {{row.type}}">
+		
+				<div ng-click="row.state == 'pending' || expand(row.id)">
+					<div class="cell icon">
+					</div>
+					<div class="cell title">
+						{{row.title}}
+					</div>
+					<div class="cell owner">
+						{{row.owner}}
+					</div>
+					<div class="cell starttime">
+						{{row.starttime | date:'M/d/yyyy H:ma'}}
+					</div>
+					<div class="cell state">
+						{{row.state}}
+					</div>
+					<div class="cell prog" ng-hide="expanded==row.id">
+						<div class="progressbar"><div class="innerbar" ng-style="getBarStyle(row.prog.metrics)"></div></div>
+					</div>
+					<div class="cell prog" ng-hide="expanded==row.id">
+						<div class="progressbar"><div class="innerbar" ng-style="getBarStyle(row.prog.build)"></div></div>
+					</div>
+					<div class="cell prog" ng-hide="expanded==row.id">
+						<div class="progressbar"><div class="innerbar" ng-style="getBarStyle(row.prog.unittest)"></div></div>
+					</div>
+					<div class="cell prog" ng-hide="expanded==row.id">
+						<div class="progressbar"><div class="innerbar" ng-style="getBarStyle(row.prog.functionaltest)"></div></div>
+					</div>
+				</div>
+				
+				<div style="clear:both"></div>
+				
+				<div class="widgets" ng-show="expanded==row.id">
+					
+					<div class="widget metrics" ng-class="{'rejected': activeDetails.metrics.test.status==0 || activeDetails.metrics.maintainability.status==0 || activeDetails.metrics.security.status==0 || activeDetails.metrics.workmanship.status==0}" ng-click="showDetails()">
+						<h3>Metrics</h3>
+						<div class="row">
+							<div class="cell">
+								<div class="arrow" ng-class="{'up': activeDetails.metrics.test.status==1, 'down': activeDetails.metrics.test.status==0}">{{activeDetails.metrics.test.percentage}}</div>
+								<div class="arrowTitle">Test</div>
+							</div>
+							<div class="cell">
+								<div class="arrow" ng-class="{'up': activeDetails.metrics.maintainability.status==1, 'down': activeDetails.metrics.maintainability.status==0}">{{activeDetails.metrics.maintainability.percentage}}</div>
+								<div class="arrowTitle">Maintainability</div>
+							</div>
+							<div style="clear:both"></div>
+							<div class="cell">
+								<div class="arrow right">{{activeDetails.metrics.security.percentage}}</div>
+								<div class="arrowTitle">Security</div>
+							</div>
+							<div class="cell">
+								<div class="arrow right">{{activeDetails.metrics.workmanship.percentage}}</div>
+								<div class="arrowTitle">Workmanship</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="widget build" ng-click="showDetails()">
+						<h3>Build</h3>
+						<div class="row">
+							<div class="cell">
+								<img src="images/computer.png" />
+								<div class="imgTitle">Debug</div>
+							</div>
+							<div class="cell">
+								<img src="images/computer.png" />
+								<div class="imgTitle">Release</div>
+							</div>
+						</div>
+						<div class="buildTitle">{{activeDetails.build.date | date:'H:ma'}} - {{activeDetails.build.date | date:'M/d/yyyy'}}</div>
+					</div>
+					
+					<div class="widget unitTest" ng-click="showDetails()">
+						<h3>Unit Test</h3>
+						<div google-chart chart="activeDetails.unittest.chart"></div>
+						<div class="per">{{activeDetails.unittest.percentage}}%<div>test passed</div></div>
+						
+						<div class="progressbar"><div class="innerbar" ng-style="{'width':activeDetails.unittest.covered+'%'}"></div><div class="progresstext">{{activeDetails.unittest.covered}}%<br />code covered</div></div>
+					</div>
+					
+					<div class="widget functionalTest" ng-click="showDetails()">
+						<h3>Functional Test</h3>
+						<div google-chart chart="activeDetails.functionaltest.chart"></div>
+						<div class="per">{{activeDetails.functionaltest.percentage}}%<div>test passed</div></div>
+						
+						<div class="progressbar"><div class="innerbar" ng-style="{'width':activeDetails.functionaltest.covered+'%'}"></div><div class="progresstext">{{activeDetails.functionaltest.covered}}%<br />code covered</div></div>
+					</div>
+					
+					<div class="widget result" ng-class="{'accepted':activeDetails.result.status==1, 'refused':activeDetails.result.status==0}">
+						<div class="resultTitle">Result:</div>
+						<div class="changeStatus" ng-if="row.type=='firewall'">
+							Change <span ng-if="activeDetails.result.status==1">Accepted</span><span ng-if="activeDetails.result.status==0">Rejected</span>
+						</div>
+						<div class="comment">{{activeDetails.result.comment}}</div>
+						<div class="button" ng-if="activeDetails.result.status!=2">
+							<span ng-if="activeDetails.result.status==1 && row.type=='firewall'"><img src="images/find.jpg" /> Merged Build</span>
+							<span ng-if="activeDetails.result.status==0">Find Issues</span>
+							<span ng-if="activeDetails.result.status==1 && row.type=='build'">Deploy</span>
+						</div>
+						<div style="margin-top: 3px;" ng-if="activeDetails.result.status==1 && row.type=='build'">
+						to: <select><option>Production</option></select>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			

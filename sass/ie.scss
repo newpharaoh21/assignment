@@ -1,0 +1,43 @@
+@import "compass";
+// IE9 SVG, needs conditional override of 'filter' to 'none'
+$experimental-support-for-svg: true;
+
+.wrapper {
+	@include filter-gradient(#F4F7FB, white, virtecal); // IE6-8
+}
+
+.row {
+	&.pending {
+		@include filter-gradient(#EAEFF7, white, horizontal); // IE6-8 
+	}
+	&.running {
+		@include filter-gradient(#EAEFF7, white, horizontal); // IE6-8 
+	}
+	&.rejected {
+		@include filter-gradient(#FCE0E0, white, horizontal); // IE6-8 
+	}
+	&.complete, &.accepted {
+		@include filter-gradient(#EBF1E9, white, horizontal); // IE6-8 
+	}
+	
+	.widgets {
+		.widget {
+			@include box-shadow(#888 2px 2px 10px);
+			border: solid #62983D 4px;
+			&.metrics, &.build, &.unitTest, &.functionalTest {
+				@include filter-gradient(#EBF1E9, white, horizontal); // IE6-8 
+			}
+			&.result {
+				background-color: transparent;
+				border: none;
+			}
+			&.rejected {
+				@include filter-gradient(#FCE0E0, white, horizontal); // IE6-8 
+			}
+		}
+	}
+	
+	.icon {
+		;
+	}
+}

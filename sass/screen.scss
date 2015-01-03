@@ -1,0 +1,350 @@
+$imgFolder: '/final/images/';
+$width: 960px;
+
+@import "compass";
+@import "lib/arrows";
+@import "lib/backgroundcover";
+
+* {
+  @include box-sizing(border-box);
+}
+
+.wrapper {
+	width: $width;
+	margin: 0 auto;
+	padding: $width/32 $width/64;
+	border: solid 1px #A6B7CD;
+	background-color: #F4F7FB; // Old browsers
+	@include background-image(linear-gradient(to bottom right, #F4F7FB, white));
+
+}
+
+.row {
+	margin: $width/100 auto;
+	width: 100%;
+	padding: 2px 0 2px 2px;
+	
+	.cell {
+		float: left;
+		margin: 2px 1.4%;
+		.row &:last-of-type {
+			padding-right: 0;
+		}
+	}
+	.cell:last-of-type {
+		padding-right: 2px;
+	}
+	
+	&:after {
+		/* Or @extend clearfix */
+		content: "";
+		display: table;
+		clear: both;
+	}
+	
+	&.pending {
+		background-color: #EAEFF7; // Old browsers
+		@include background-image(linear-gradient(to right, #EAEFF7, white));
+		border: solid 1px #BFBFBF;
+		color: #7F7F7F;
+		.icon {
+			@include cover-background("pending.png");
+			/*
+			background: {
+			  image: image-url("pending.png");
+			  repeat: none;
+			  position: top left;
+			};
+			*/
+		}
+	}
+	&.running {
+		background-color: #EAEFF7; // Old browsers
+		@include background-image(linear-gradient(to right, #EAEFF7, white));
+		border: solid 1px #4F88BB;
+		color: #203864;
+		.icon {
+			@include cover-background("running.png");
+			/*
+			background: {
+			  image: image-url("running.png");
+			  repeat: none;
+			  position: top left;
+			};
+			*/
+		}
+	}
+	&.rejected {
+		background-color: #FCE0E0; // Old browsers
+		@include background-image(linear-gradient(to right, #FCE0E0, white));
+		border: solid 1px #C00000;
+		color: #C00000;
+		.icon {
+			@include cover-background("rejected.png");
+			/*
+			background: {
+			  image: image-url("rejected.png");
+			  repeat: none;
+			  position: top left;
+			};
+			*/
+		}
+	}
+	&.complete, &.accepted {
+		background-color: #EBF1E9; // Old browsers
+		@include background-image(linear-gradient(to right, #EBF1E9, white));
+		border: solid 1px #62983D;
+		color: #62983D;
+	}
+	&.complete {
+		.icon {
+			@include cover-background("complete.png");
+			/*
+			background: {
+			  image: image-url("complete.png");
+			  repeat: none;
+			  position: top left;
+			};
+			*/
+		}
+	}
+	&.accepted {
+		.icon {
+			@include cover-background("accepted.png");
+			/*
+			background: {
+			  image: image-url("accepted.png");
+			  repeat: none;
+			  position: top left;
+			};
+			*/
+		}
+	}
+	
+	.icon {
+		position: relative;
+		width: 3.5%;
+		@include background-size(cover);
+		&:before{
+			content: "";
+			display: block;
+			padding-top: 100%; 	/* initial ratio of 1:1*/
+		};
+	}
+	
+	
+	&.notheader {
+		.title {
+			width: 10.8%;
+		}
+		.prog {
+			@include transition-property(all);
+			@include transition-duration(0.5s);
+			@include transition-timing-function(linear);
+			display: block!important;
+			opacity: 1;
+			&.ng-hide-add, &.ng-hide-remove {
+				opacity:1;
+			}
+			&.ng-hide {
+			  opacity:0;
+			};
+			width: 5.4%;
+			margin: 2px 2%;
+		}
+	}
+	&.header  {
+		.title {
+			width: 18.9%;
+		}
+		.prog {
+			width: 8%;
+			margin: 2px 0.5%;
+		}
+	}
+	.owner {
+		width: 8.1%;
+	}
+	.starttime {
+		width: 16.2%;
+	}
+	.state {
+		width: 8.1%;
+	}
+	
+	.widgets {
+		@include transition-property(all);
+		@include transition-duration(0.5s);
+		@include transition-timing-function(linear);
+		overflow: hidden;
+		display: block!important;
+		height: $width*18.75/100;
+		&.ng-hide-add, &.ng-hide-remove {
+			height: $width*18.75/100;
+		}
+		&.ng-hide {
+			height:0;
+		}
+		&:before {
+			content: "";
+			display: table;
+			clear: both;
+		}
+		.widget {
+			display: inline-table;
+			width: $width*16.66/100;
+			height: $width*16.66/100;
+			padding: 6px 6px 0 6px;
+			margin: 10px;
+			color: #62983D;
+			&:not(.result) {
+				@include box-shadow(#888 2px 2px 10px);
+				background-color: #EBF1E9; // Old browsers
+				@include background-image(linear-gradient(to bottom right, #EBF1E9, white));
+				border: solid #62983D 4px;
+			}
+			&.result {
+				text-align: center;
+				.resultTitle {
+					color: black;
+				}
+				.changeStatus {
+					margin-top: 0.5em;
+				}
+				&.accepted {
+					.changeStatus, .comment {
+						color: #FEC000;
+					}
+				}
+				&.refused {
+					.changeStatus, .comment {
+						color: #C00000;
+					}
+				}
+				.comment {
+					font-size: 1.8em;
+					margin-bottom: 0.5em;
+				}
+				.button {
+					background: #5B9BD5;
+					color: white;
+					padding: 4px 2px;
+					cursor: pointer;
+				}
+			}
+			&.rejected {
+//				background-color: #FCE0E0; // Old browsers
+				@include background-image(linear-gradient(to bottom right, #FCE0E0, white));
+				border: solid #C00000 1px;
+				h3 {
+					color: #C00000;
+				}
+			}
+			h3 {
+				margin: 0;
+			}
+			.cell {
+				margin: 0;
+				img {
+					width: $width*6.56/100;
+				}
+				.imgTitle {
+					margin: 5px auto;
+					text-align: center;
+					color: #5B9BD5;
+				}
+			}
+			.per {
+				position: relative;
+				top: -58px;
+				left: 80px;
+				font-size: 32px;
+				div {
+					font-size: 12px;
+					color: black;
+				}
+			}
+			.progressbar {
+				margin-top: -35px;
+				background: #F7CBAC;
+				@include box-shadow(none);
+				position: relative;
+				.innerbar {
+					position: absolute;
+				}
+				.progresstext {
+					position: absolute;
+					line-height: 0.75em;
+					text-align: center;
+					margin: 2px 0;
+					width: 100%;
+					color: black;
+					font-size: 0.9em;
+				}
+			}
+			.arrow {
+				width: $width*2/100;
+				height: $width*2/100;
+				text-align: center;
+				&.up {
+					margin: 10px $width*2/100 2px $width*2/100;
+					color: white;
+					background: #538135;
+					@include arrow-lazy($size: $width*2/100, $color: #538135);
+				}
+				&.down {
+					margin: -8px $width*2/100 20px $width*2/100;
+					color: white;
+					background: #C00000;
+					@include arrow-lazy($direction: down, $size: $width*2/100, $color: #C00000);
+				}
+				&.right {
+					margin: 14px $width*2/100 10px $width*2/100;
+					color: black;
+					background: #FFD965;
+					@include arrow-lazy($direction: right, $size: $width*2/100, $color: #FFD965);
+				}
+			}
+			.arrowTitle, .buildTitle {
+				font-size: 11px;
+				text-align:center;
+				color: black;
+			}
+		};
+	};
+	.progressbar {
+		width: 100%;
+		height: $width*2.6/100;
+		background: #D8D8D8;
+		@include box-shadow(#888 1px 1px 5px);
+		.innerbar {
+			background: #C5E0B3;
+			height: $width*2.6/100;
+			.progresstext {
+				display: block;
+				margin: 0 auto;
+			}
+		}
+	};
+
+}
+
+.msg {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	top: 0;
+	padding: 5px;
+	text-align: center;
+	background: #FFAA00;
+	color: blue;
+	font-size: 1em;
+	border: white solid;
+}
+
+
+body {
+	padding: 10px 50px 50px;
+	font-family: Calibri;
+	font-size: 90%;
+}

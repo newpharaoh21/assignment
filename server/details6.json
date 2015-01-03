@@ -1,0 +1,49 @@
+{
+	"metrics":
+	{ 
+		"test" :
+		{
+			"percentage": "64",
+			"status": "1"
+		},
+		"maintainability" :
+		{
+			"percentage": "53",
+			"status": "1"
+		},
+		"security" :
+		{
+			"percentage": "64",
+			"status": "1"
+		},
+		"workmanship" :
+		{
+			"percentage": "72",
+			"status": "1"
+		}
+	},
+	
+	"build": {
+		"date": "2014-04-17T10:46",
+		"type": "debug"
+	},
+	
+	"unittest": {
+		"passed": 142,
+		"failed": 10,
+		"percentage": "73",
+		"covered": "76"
+	},
+	
+	"functionaltest": {
+		"passed": 4321,
+		"failed": 2145,
+		"percentage": "73",
+		"covered": "23"
+	},
+	
+	"result": {
+		"status": "1",
+		"comment": "Auto-Merged"
+	}
+}

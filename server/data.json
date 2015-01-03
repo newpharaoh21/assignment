@@ -1,0 +1,163 @@
+[
+	{
+		"id": 1,
+		"type": "build",
+		"title": "Tenrox-R1_1235",
+		"owner": "",
+		"starttime": "",
+		"state": "pending",
+		"prog": {
+			"metrics": {
+				"percentage": "0",
+				"status": "pending"
+			},
+			"build": {
+				"percentage": "0",
+				"status": "pending"
+			},
+			"unittest": {
+				"percentage": "0",
+				"status": "pending"
+			},
+			"functionaltest": {
+				"percentage": "0",
+				"status": "pending"
+			}
+		}
+	},
+	
+	{
+		"id": 2,
+		"type": "firewall",
+		"title": "432462",
+		"owner": "jtuck",
+		"starttime": "2014-04-18T12:12:00.000Z",
+		"state": "running",
+		"prog": {
+			"metrics": {
+				"percentage": "70",
+				"status": "running"
+			},
+			"build": {
+				"percentage": "70",
+				"status": "pending"
+			},
+			"unittest": {
+				"percentage": "70",
+				"status": "pending"
+			},
+			"functionaltest": {
+				"percentage": "70",
+				"status": "pending"
+			}
+		}
+	},
+	
+	{
+		"id": 3,
+		"type": "firewall",
+		"title": "432461",
+		"owner": "samy",
+		"starttime": "2014-04-18T10:53",
+		"state": "rejected",
+		"prog": {
+			"metrics": {
+				"percentage": "100",
+				"status": "rejected"
+			},
+			"build": {
+				"percentage": "100",
+				"status": "complete"
+			},
+			"unittest": {
+				"percentage": "100",
+				"status": "complete"
+			},
+			"functionaltest": {
+				"percentage": "100",
+				"status": "complete"
+			}
+		}
+	},
+	
+	{
+		"id": 4,
+		"type": "build",
+		"title": "Tenrox-R1_1234",
+		"owner": "",
+		"starttime": "2014-04-17T09:42",
+		"state": "complete",
+		"prog": {
+			"metrics": {
+				"percentage": "100",
+				"status": "complete"
+			},
+			"build": {
+				"percentage": "100",
+				"status": "complete"
+			},
+			"unittest": {
+				"percentage": "100",
+				"status": "complete"
+			},
+			"functionaltest": {
+				"percentage": "100",
+				"status": "complete"
+			}
+		}
+	},
+	
+	{
+		"id": 5,
+		"type": "firewall",
+		"title": "432460",
+		"owner": "samy",
+		"starttime": "2014-04-17T07:51",
+		"state": "rejected",
+		"prog": {
+			"metrics": {
+				"percentage": "100",
+				"status": "rejected"
+			},
+			"build": {
+				"percentage": "0",
+				"status": "pending"
+			},
+			"unittest": {
+				"percentage": "0",
+				"status": "pending"
+			},
+			"functionaltest": {
+				"percentage": "0",
+				"status": "pending"
+			}
+		}
+	},
+	
+	{
+		"id": 6,
+		"type": "firewall",
+		"title": "432459",
+		"owner": "samy",
+		"starttime": "2014-04-16T06:43",
+		"state": "accepted",
+		"prog": {
+			"metrics": {
+				"percentage": "100",
+				"status": "accepted"
+			},
+			"build": {
+				"percentage": "100",
+				"status": "accepted"
+			},
+			"unittest": {
+				"percentage": "100",
+				"status": "accepted"
+			},
+			"functionaltest": {
+				"percentage": "100",
+				"status": "accepted"
+			}
+		}
+	}
+]
